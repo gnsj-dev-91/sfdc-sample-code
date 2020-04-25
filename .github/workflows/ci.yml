@@ -27,3 +27,9 @@ jobs:
         run: openssl enc -aes-256-cbc -md sha256 -salt -d -in assets/server.key.enc -out assets/server.key -k ${{ secrets.SERVER_KEY_PASSWORD }} -pbkdf2
       - name: Install Dependencies
         run: npm install sfdx-cli
+      - name: Authenticate DevHub
+        run: node_modules/sfdx-cli/bin/run force:auth:jwt:grant --clientid ${{ secrets.SF_CONSUMER_KEY }} --jwtkeyfile server.key --username ${{ secrets.SF_USERNAME }} --setdefaultdevhubusername --setalias devhub
+      - name: Create Scratch Org
+        run: node_modules/sfdx-cli/bin/run force:org:create --targetdevhubusername devhub --setdefaultusername --definitionfile config/project-scratch-def.json --setalias ciorg --durationdays 1
+      - name: Delete Scratch Org
+        run: node_modules/sfdx-cli/bin/run force:org:delete --noprompt
