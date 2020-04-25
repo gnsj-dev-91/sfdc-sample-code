@@ -38,4 +38,4 @@ jobs:
       - name: Delete Scratch Org
         run: node_modules/sfdx-cli/bin/run force:org:delete --noprompt
       - name: Deploy source to DevHub
-        run: node_modules/sfdx-cli/bin/run force:source:deploy -p force-app/main/default -l RunLocalTests -u DevHub
+        run: node_modules/sfdx-cli/bin/run force:source:deploy -p force-app/main/default -l RunLocalTests -u devhub
