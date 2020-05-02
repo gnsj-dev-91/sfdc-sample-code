@@ -1,0 +1,6 @@
+<apex:page
+  standardController="Order"
+  extensions="InvoiceGenerationController"
+  recordSetVar="records"
+  action="{!runJob}"
+/>
