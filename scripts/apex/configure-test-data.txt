@@ -1,0 +1,17 @@
+DELETE [SELECT Id FROM Invoice__c];
+DELETE [SELECT Id FROM Order];
+DELETE [SELECT Id FROM Account];
+DELETE [SELECT Id FROM BatchApexErrorLog__c];
+Account orderAccount = new Account();
+orderAccount.Name = 'Great customer!';
+INSERT orderAccount;
+List<Order> orders = new List<Order>();
+for(Integer orderIdx = 0; orderIdx < 1000; orderIdx++) {
+    Order order = new Order();
+    order.Name = 'Ref:'+orderIdx;
+    order.Status = 'Draft';
+    order.EffectiveDate = System.today();
+    order.AccountId = orderAccount.Id;
+    orders.add(order);
+}
+INSERT orders;
