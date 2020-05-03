@@ -1,7 +1,8 @@
 /**
  * Job to generate invoices to given orders
+ * https://github.com/afawcett/force-brf
  **/
-public class InvoiceGenerationJob implements Database.Batchable<SObject> {
+public class InvoiceGenerationJob implements Database.Batchable<SObject>, BatchableErrorHandler {
   public List<Order> start(Database.BatchableContext ctx) {
     return [SELECT Id FROM Order
             WHERE EffectiveDate = THIS_WEEK
@@ -38,15 +39,15 @@ public class InvoiceGenerationJob implements Database.Batchable<SObject> {
 
   public void finish(Database.BatchableContext ctx) { }
 
-  /*public void handleErrors(brf_BatchableError error) {
+  public void handleErrors(BatchableError error) {
       // Update the effected orders with the error for further review
       List<String> orderIds = error.JobScope.split(',');
-      List<Order> orders = [select Id from Order where Id in :orderIds];
+      List<Order> orders = [SELECT Id FROM Order WHERE Id IN :orderIds];
       for(Order order : orders) {
           order.InvoiceGenerationError__c = error.Id;
       }
       update orders;
-  }*/
+  }
 
   // Produce some exceptions, some catchable, some not...
   private void produceSomeExceptions(String orderName, Date orderDate) {

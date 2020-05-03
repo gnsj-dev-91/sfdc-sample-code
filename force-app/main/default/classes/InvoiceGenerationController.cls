@@ -1,3 +1,4 @@
+// https://github.com/afawcett/force-brf
 public with sharing class InvoiceGenerationController {
 
   private ApexPages.StandardSetController controller;
