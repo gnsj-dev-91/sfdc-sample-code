@@ -1,6 +1,19 @@
 # List files or directories below to ignore them when running force:source:push, force:source:pull, and force:source:status
 # More information: https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_exclude_source.htm
 #
+# SAMPLE SYNTAX
+## Specify a relative path to a directory from the project root
+#helloWorld/main/default/classes
+
+# Specify a wildcard directory - any directory named “classes” is excluded
+#**classes
+
+# Specify file extensions
+#**.cls
+#**.pdf
+
+# Specify a specific file
+#helloWorld/main/default/HelloWorld.cls
 
 package.xml
 
@@ -11,4 +24,8 @@ package.xml
 # LWC Jest
 **/__tests__/**
 
+# ignoring profile when push code to scratch
 force-app\main\default\profiles\**
+# ignoring profile when pull code from scratch
+Admin.profile
+
