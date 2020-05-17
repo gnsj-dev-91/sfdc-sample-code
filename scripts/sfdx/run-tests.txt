@@ -1,0 +1,1 @@
+sfdx force:apex:test:run -n ApexContinuationTest -r human -c -u ContinuationImplAndTesting
