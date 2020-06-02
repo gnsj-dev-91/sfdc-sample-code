@@ -1,0 +1,19 @@
+<aura:component controller="PassAccountIdController">
+  <aura:attribute name="contactList" type="Contact[]"/>
+  <aura:attribute name="contactColumns" type="List"/>
+  <aura:attribute name="Pass_AccountId" type="Id" />
+
+  <!-- Handle the Application event -->
+  <aura:handler
+    event="c:PassAccountIdEvent"
+    action="{!c.getAccountIdFromApplicationEvent}"/>
+
+  <form>
+    <aura:if isTrue="{!not(empty(v.contactList))}">
+      <aura:iteration items="{!v.contactList}" var="contactRecord">
+          {!contactRecord.Name}<br/>
+        </aura:iteration>
+    </aura:if>
+  </form>
+
+</aura:component>

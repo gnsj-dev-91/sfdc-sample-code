@@ -1,0 +1,22 @@
+DELETE [SELECT Id FROM Account];
+DELETE [SELECT Id FROM Contact];
+
+List<Account> accounts = new List<Account>();
+for(Integer i=0;i<10;i++){
+  Account acc = new Account();
+  acc.Name = 'Account Test ' + i;
+  accounts.add(acc);
+}
+insert accounts;
+
+List<Contact> contacts = new List<Contact>();
+for(Integer i=0;i<10;i++){
+  for(Integer j=0;j<10;j++){
+    Contact con = new Contact();
+    con.FirstName = 'Contact';
+    con.LastName = accounts[j].Name + i;
+    con.AccountId = accounts[j].Id;
+    contacts.add(con);
+  }
+}
+insert contacts;

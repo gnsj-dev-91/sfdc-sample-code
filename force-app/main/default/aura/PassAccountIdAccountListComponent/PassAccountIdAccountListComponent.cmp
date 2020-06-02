@@ -1,0 +1,40 @@
+<aura:component controller="PassAccountIdController">
+  <aura:attribute name="accountList" type="Account[]" />
+  <aura:attribute name="checkButtonId" type="Id" />
+
+  <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+  <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+    <thead>
+      <tr class="slds-text-title_caps">
+        <th scope="col">
+          <div class="slds-truncate">Account Name</div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <aura:iteration items="{!v.accountList}" var="acc">
+        <tr>
+          <td>
+            <lightning:button
+              iconName="utility:add"
+              variant="bare"
+              name="{!acc.Id}"
+              onclick="{!c.handleClick}"
+            />
+          </td>
+          <td data-label="Account Name">
+            <div class="slds-truncate">
+              {!acc.Name}
+            </div>
+            <aura:if isTrue="{!v.checkButtonId == acc.Id}">
+              <c:PassAccountIdContactListComponent
+                aura:id="PassAccountIdContactListComponent"
+              />
+            </aura:if>
+          </td>
+        </tr>
+      </aura:iteration>
+    </tbody>
+  </table>
+</aura:component>

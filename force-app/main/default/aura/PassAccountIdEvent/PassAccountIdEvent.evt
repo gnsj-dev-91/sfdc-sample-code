@@ -1,0 +1,3 @@
+<aura:event type="APPLICATION" description="Event to fire an account id">
+  <aura:attribute name="Pass_AccountId" type="Id" />
+</aura:event>
